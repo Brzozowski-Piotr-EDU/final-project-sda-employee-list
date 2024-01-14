@@ -30,11 +30,11 @@ table.tb {
       line-height: 3;
     }
   }
-  tr.employee:nth-child(even) {
+  tr.trEmployee:nth-child(even) {
     background-color: #37373b;
   }
 
-  tr.employee:hover {
+  tr.trEmployee:hover {
     background-color: #757272;
     cursor: pointer;
   }
@@ -43,9 +43,51 @@ table.tb {
   }
 }
 
-.buttonBack {
-  position: relative;
+button {
   height: 35px;
   width: 150px;
-  top: 30px;
+}
+.add {
+  margin-bottom: 35px;
+}
+
+.back {
+  margin-top: 30px;
+}
+
+input {
+  width: 50%;
+}
+
+.ipSearch {
+  margin-left: 12%;
+  height: 32px;
+  text-align: center;
+}
+
+label {
+}
+
+form {
+  width: 50%;
+  border: 3px solid #757272;
+  margin-top: 25px;
+  padding-bottom: 25px;
+
+  label {
+    font-size: 20px;
+  }
+
+  input {
+    width: 225px;
+    height: 25px;
+    margin-top: 10px;
+  }
+
+  input.ipSecond {
+    margin-left: 10px;
+  }
+  h1 {
+    text-align: center;
+  }
 }
