@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { mockData } from "../App";
+import { mockData } from "./App";
+import { useNavigate } from "react-router-dom";
+import { RenderStatus } from "./componets/RenderStatus";
 
 export const Table = (props: { data: Employee[] }) => {
   const renderStatus = (status: EmployeeStatus): string => {
@@ -13,13 +15,12 @@ export const Table = (props: { data: Employee[] }) => {
         return "❔";
     }
   };
-
+  const navigate = useNavigate();
   const handleRowClick = (event: React.MouseEvent, item: Employee): void => {
     event.preventDefault();
-    console.log(item);
+    navigate("/details", { state: item });
   };
 
-  const [data, setData] = useState(mockData);
   return (
     <>
       <div>
@@ -38,16 +39,15 @@ export const Table = (props: { data: Employee[] }) => {
           <tbody>
             {props.data.map((item) => (
               <tr
+                className="employee"
                 key={item.id}
-                onClick={(event) =>
-                  handleRowClick(event, props.data[item.id - 1])
-                }
+                onClick={(event) => handleRowClick(event, item)}
               >
                 <th>{item.id}</th>
                 <th>{item.firstname}</th>
                 <th>{item.lastname}</th>
                 <th>{item.salary}</th>
-                <th>{renderStatus(item.status)}</th>
+                <th>{RenderStatus(item.status)}</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>

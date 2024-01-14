@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Table } from "./componets/table";
+import { Table } from "./Table";
 import "./App.scss";
+import { Route, Routes } from "react-router";
+import { Details } from "./componets/Details";
 
 export type EmployeeStatus = "SICK_LEAVE" | "AVAILABLE";
 export interface Employee {
@@ -36,8 +38,8 @@ export const mockData: Employee[] = [
     salary: 10000,
     status: "AVAILABLE",
     birthdate: new Date("1995-02-01"),
-    address: "Warszawska 12",
-    city: "Warszawa",
+    address: "Poznańska 45a",
+    city: "Poznań",
     postalcode: "00-000",
     phonenumber: "+48 888 999 111",
   },
@@ -48,10 +50,22 @@ export const mockData: Employee[] = [
     salary: 12500,
     status: "ok",
     birthdate: new Date("1990-05-11"),
-    address: "Warszawska 12",
-    city: "Warszawa",
+    address: "Wrocławska 8b",
+    city: "Wrocław",
     postalcode: "00-000",
     phonenumber: "+48 111 555 000",
+  },
+  {
+    id: "4",
+    firstname: "Paulina",
+    lastname: "Dagmarczyk",
+    salary: 5000,
+    status: "AVAILABLE",
+    birthdate: new Date("1997-10-24"),
+    address: "Gdańska 54",
+    city: "Gdańsk",
+    postalcode: "00-000",
+    phonenumber: "+48 505 664 301",
   },
 ];
 
@@ -59,7 +73,7 @@ function App() {
   return (
     <>
       <main>
-        <h1>Workers</h1>
+        <h1>List of Employees</h1>
         <Table data={mockData} />
       </main>
     </>
