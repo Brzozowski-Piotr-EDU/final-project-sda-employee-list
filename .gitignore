@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+17.Projekt Końcowy.code-workspace
 *.local
 
 # Editor directories and files
