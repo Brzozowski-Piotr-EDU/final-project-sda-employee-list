@@ -31,6 +31,10 @@ main {
     margin-left: 10px;
   }
 
+  .input-inrow {
+    margin-left: 10px;
+  }
+
   .input-submit {
     position: relative;
     height: 35px;
@@ -38,13 +42,13 @@ main {
     top: 30px;
     margin-right: 25px;
   }
-  .input-inrow {
-    margin-left: 10px;
-  }
 
   select {
-    display: block;
     margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    width: 97.5%;
   }
 
   form {
@@ -52,7 +56,7 @@ main {
     width: 570px;
     height: 500px;
   }
-  section.bottom {
+  section.section-bottom {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -5,6 +5,7 @@ import { RenderStatus } from "./RenderStatus";
 export function Details() {
   const location = useLocation();
   const data: Employee = location.state;
+  console.log(data);
 
   const navigate = useNavigate();
   const handleButtonClick = (): void => {

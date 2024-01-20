@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { mockData } from "./App";
+import React from "react";
+import { Employee, mockData } from "./App";
 import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
 
@@ -10,8 +10,14 @@ export const Table = (props: { data: Employee[] }) => {
     navigate("/details", { state: item });
   };
 
-  const handleButtonClick = (): void => {
+  /*const handleButtonClick = (props: {data: Employee[]}): void => {
     navigate("/manage");
+  };*/
+
+  const handleButtonClick = (event: React.MouseEvent, item: Employee): void => {
+    event.preventDefault();
+    //console.log({ state: item });
+    navigate("/manage", { state: item });
   };
 
   return (
@@ -35,16 +41,25 @@ export const Table = (props: { data: Employee[] }) => {
           <tbody>
             {props.data.map((item) => (
               <tr
+                onClick={(event) => handleRowClick(event, item)}
                 className="employee"
                 key={item.id}
-                onClick={(event) => handleRowClick(event, item)}
               >
                 <th>{item.id}</th>
                 <th>{item.firstname}</th>
                 <th>{item.lastname}</th>
                 <th>{item.salary}</th>
                 <th>{RenderStatus(item.status)}</th>
-                <th>Edit</th>
+                <th>
+                  <button
+                    onClick={(event) => {
+                      event.stopPropagation(); // Zatrzymuje propagację zdarzenia
+                      handleButtonClick(event, item);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </th>
                 <th>Delete</th>
               </tr>
             ))}

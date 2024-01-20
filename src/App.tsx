@@ -16,7 +16,7 @@ export interface Employee {
   lastname: string;
   salary: number;
   status: EmployeeStatus;
-  birtdate: Date;
+  birthdate: Date;
   address: string;
   city: string;
   postalcode: string;
