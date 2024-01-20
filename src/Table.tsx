@@ -4,27 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
 
 export const Table = (props: { data: Employee[] }) => {
-  const renderStatus = (status: EmployeeStatus): string => {
-    switch (status) {
-      case "SICK_LEAVE":
-        return "🤮";
-
-      case "AVAILABLE":
-        return "☑️";
-      default:
-        return "❔";
-    }
-  };
   const navigate = useNavigate();
   const handleRowClick = (event: React.MouseEvent, item: Employee): void => {
     event.preventDefault();
     navigate("/details", { state: item });
   };
 
+  const handleButtonClick = (): void => {
+    navigate("/manage");
+  };
+
   return (
     <>
       <div>
-        <table className="tb">
+        <button className="button-add" onClick={handleButtonClick}>
+          Add new employee
+        </button>
+        <table className="table-employee">
           <thead>
             <tr>
               <th>ID</th>

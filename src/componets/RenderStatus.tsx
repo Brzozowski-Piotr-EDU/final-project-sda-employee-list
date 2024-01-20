@@ -8,6 +8,16 @@ export const RenderStatus = (status: EmployeeStatus): string => {
 
     case "AVAILABLE":
       return "☑️";
+
+    case "EMPLOYED":
+      return "✅";
+
+    case "FIRED":
+      return "🚫";
+
+    case "ON_HOLIDAY":
+      return "🍹";
+
     default:
       return "❔";
   }

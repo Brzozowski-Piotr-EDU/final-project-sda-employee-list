@@ -4,7 +4,12 @@ import "./App.scss";
 import { Route, Routes } from "react-router";
 import { Details } from "./componets/Details";
 
-export type EmployeeStatus = "SICK_LEAVE" | "AVAILABLE";
+export type EmployeeStatus =
+  | "SICK_LEAVE"
+  | "AVAILABLE"
+  | "EMPLOYED"
+  | "FIRED"
+  | "ON_HOLIDAY";
 export interface Employee {
   id: string;
   firstname: string;
@@ -24,7 +29,7 @@ export const mockData: Employee[] = [
     firstname: "Jan",
     lastname: "Kowalski",
     salary: 5000,
-    status: "SICK_LEAVE",
+    status: "EMPLOYED",
     birthdate: new Date("1983-07-14"),
     address: "Warszawska 12",
     city: "Warszawa",
@@ -36,7 +41,7 @@ export const mockData: Employee[] = [
     firstname: "Adam",
     lastname: "Nowak",
     salary: 10000,
-    status: "AVAILABLE",
+    status: "FIRED",
     birthdate: new Date("1995-02-01"),
     address: "Poznańska 45a",
     city: "Poznań",
@@ -60,7 +65,7 @@ export const mockData: Employee[] = [
     firstname: "Paulina",
     lastname: "Dagmarczyk",
     salary: 5000,
-    status: "AVAILABLE",
+    status: "ON_HOLIDAY",
     birthdate: new Date("1997-10-24"),
     address: "Gdańska 54",
     city: "Gdańsk",
@@ -72,7 +77,7 @@ export const mockData: Employee[] = [
 function App() {
   return (
     <>
-      <main>
+      <main className="main">
         <h1>List of Employees</h1>
         <Table data={mockData} />
       </main>

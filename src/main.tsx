@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Details } from "./componets/Details.tsx";
+import { Manage } from "./componets/Manage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/details",
     element: <Details />,
+  },
+  {
+    path: "/manage",
+    element: <Manage />,
   },
 ]);
 

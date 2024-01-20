@@ -3,9 +3,63 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-left: 10px;
+  }
+
+  input {
+    height: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .input {
+    width: 95.5%;
+    margin-left: 10px;
+  }
+
+  .input-first {
+    width: 46%;
+    margin-left: 10px;
+  }
+
+  .input-second {
+    width: 46%;
+    margin-left: 10px;
+  }
+
+  .input-submit {
+    position: relative;
+    height: 35px;
+    width: 150px;
+    top: 30px;
+    margin-right: 25px;
+  }
+  .input-inrow {
+    margin-left: 10px;
+  }
+
+  select {
+    display: block;
+    margin-top: 15px;
+  }
+
+  form {
+    background-color: #37373b;
+    width: 570px;
+    height: 500px;
+  }
+  section.bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-table.tb {
+.table-employee {
   width: 1200px;
   border-collapse: collapse;
   background-color: #1c1c1e th, td {
@@ -38,12 +92,19 @@ table.tb {
     background-color: #757272;
     cursor: pointer;
   }
-  tr.employeeDetail {
+  tr.employee-detail {
     background-color: #757272;
   }
 }
 
-.buttonBack {
+.button-add {
+  position: relative;
+  height: 35px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.button-back {
   position: relative;
   height: 35px;
   width: 150px;

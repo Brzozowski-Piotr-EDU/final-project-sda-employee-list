@@ -13,11 +13,11 @@ export function Details() {
 
   return (
     <>
-      <main>
+      <main className="main">
         <h1>
           {data.firstname} {data.lastname} (ID: {data.id})
         </h1>
-        <table className="tb">
+        <table className="table-employee">
           <thead>
             <tr>
               <th>Birth Date</th>
@@ -30,7 +30,7 @@ export function Details() {
             </tr>
           </thead>
           <tbody>
-            <tr className="employeeDetail">
+            <tr className="employee-detail">
               <th>{data.birthdate.toLocaleDateString()}</th>
               <th>{data.city}</th>
               <th>{data.address}</th>
@@ -41,7 +41,7 @@ export function Details() {
             </tr>
           </tbody>
         </table>
-        <button className="buttonBack" onClick={handleButtonClick}>
+        <button className="button-back" onClick={handleButtonClick}>
           Back
         </button>
       </main>
