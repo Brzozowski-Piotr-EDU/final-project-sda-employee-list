@@ -39,8 +39,22 @@ export const Manage = () => {
     }
   }, [data]);
 
-  //logic to send data via fetch to json-server
+  // Needed for validation test on fields before sending, that block sending to json-server a dump data
+  const validateField = (value, minLength, errorMessage) => {
+    if (!value || value.length < minLength) {
+      alert(errorMessage);
+      return false;
+    }
+    return true;
+  };
 
+  const isValidPostalCode = (code) =>
+    /^[0-9-]*\d+[0-9-]*$/.test(code) && code.length >= 6;
+
+  const isValidPhoneNumber = (number) =>
+    /^\+48[0-9]+$/.test(number) && number.length >= 12;
+
+  //logic to send data via fetch to json-server
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -60,67 +74,17 @@ export const Manage = () => {
     //Checking if all inputs and sections is not empty
     //The ! means that the variable is empty
     if (
-      !employeeData.firstname ||
-      !employeeData.lastname ||
-      !employeeData.birthdate ||
-      !employeeData.address ||
-      !employeeData.city ||
-      !employeeData.postalcode ||
-      !employeeData.phonenumber ||
-      !employeeData.salary ||
-      employeeData.status === ""
+      !validateField(employeeData.firstname, 2, "First name is too short") ||
+      !validateField(employeeData.lastname, 2, "Last name is too short") ||
+      !validateField(employeeData.address, 1, "Address is too short") ||
+      !validateField(employeeData.city, 2, "City name is too short") ||
+      !employeeData.postalcode.includes("-") ||
+      !isValidPostalCode(employeeData.postalcode) ||
+      !employeeData.phonenumber.includes("+48") ||
+      !isValidPhoneNumber(employeeData.phonenumber) ||
+      employeeData.salary < 0 ||
+      employeeData.salary.toString().includes("-")
     ) {
-      alert("Please fill all fields!");
-      return;
-    }
-
-    if (employeeData.firstname.length < 2) {
-      alert("First name is too short");
-
-      return;
-    }
-
-    if (employeeData.lastname.length < 2) {
-      alert("Last name is too short");
-      return;
-    }
-
-    if (employeeData.address.length < 1) {
-      alert("Address is too short");
-      return;
-    }
-
-    if (employeeData.city.length < 2) {
-      alert("City name is too short");
-      return;
-    }
-
-    if (employeeData.postalcode.includes("-") === false) {
-      alert("Postal code is missing '-' symbol!");
-      return;
-    } else if (/^[0-9-]*\d+[0-9-]*$/.test(employeeData.postalcode) === false) {
-      alert("Please enter vaild postal code");
-      return;
-    } else if (employeeData.postalcode.length < 6) {
-      alert("Postal code is too short");
-      return;
-    }
-
-    if (employeeData.phonenumber.includes("+48") === false) {
-      alert("Phone number is missing '+48' prefix!");
-      return;
-    } else if (!/^[0-9+]+$/.test(employeeData.phonenumber)) {
-      alert("Please enter a valid phone number!");
-      return;
-    } else if (employeeData.phonenumber.length < 12) {
-      alert("Phone number is too short");
-      return;
-    }
-
-    if (employeeData.salary < 0) {
-      alert("Salary can't be negative!");
-    } else if (employeeData.salary.includes("-") === true) {
-      alert("Salary field contain '-'!");
       return;
     }
 
@@ -203,6 +167,10 @@ export const Manage = () => {
     const { name, value } = event.target;
 
     if (name === "salary" && parseFloat(value) < 0) {
+      return;
+    }
+
+    if (name === "postalcode" && !/^\d*(-\d*)?$/.test(value)) {
       return;
     }
 

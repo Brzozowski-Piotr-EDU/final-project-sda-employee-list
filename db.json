@@ -1,18 +1,6 @@
 {
   "employees": [
     {
-      "firstname": "Jan",
-      "lastname": "Kowalski",
-      "birthdate": "1983-07-14",
-      "address": "Warszawska 12",
-      "city": "Warszawa",
-      "postalcode": "00-000",
-      "phonenumber": "+48777666555",
-      "salary": "5000",
-      "status": "EMPLOYED",
-      "id": "1"
-    },
-    {
       "id": "2",
       "firstname": "Adam",
       "lastname": "Nowak",
@@ -48,4 +36,5 @@
       "postalcode": "00-000",
       "phonenumber": "+48 505 664 301"
     }
+  ]
 }

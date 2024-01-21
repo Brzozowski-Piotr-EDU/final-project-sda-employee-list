@@ -1,0 +1,59 @@
+[33mcommit 517a44c07f8a89074d82c0acee6e28dc921d1a5e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 21 14:33:46 2024 +0100
+
+    Extended logic for Manage.tsx but very poorly coded, need to be fix
+
+[33mcommit 062b18f395f43c4553321eb7607122e250993a77[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 21 12:00:24 2024 +0100
+
+    Added full logic to Manage.tsx and added fetch API JSON, needed to add proper ID and move fetching to seperate .tsx
+
+[33mcommit 321d6e89a7e2f1d370db0d4d41cb19933e46a237[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sat Jan 20 17:23:32 2024 +0100
+
+    Basic logic added to Manage.tsx also added minor tweaks
+
+[33mcommit 0ff8945a55c211d8b0e3e5ddeabeb20ef8c75393[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sat Jan 20 13:00:27 2024 +0100
+
+    Manage.tsx done with styling but without logic
+
+[33mcommit 6d77cb609e72033fff3ba52d1e0534cd2e1e605e[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Wed Jan 17 21:05:50 2024 +0100
+
+    For some reason my last push didn't go through all
+
+[33mcommit b27a31aa2c4b6e823d2284e583d64a57fc9763fa[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 14 20:04:25 2024 +0100
+
+    Deleted Add.tsx added Manage.tsx
+
+[33mcommit cb98033126e3be12ef0181cd4d4a0bb03ea842d6[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 14 20:00:38 2024 +0100
+
+    First attempt adding manage.tsx (gone wrong)
+
+[33mcommit d74119981a3b5a68e717c3c265ee52a112768ccb[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 14 17:35:24 2024 +0100
+
+    Added detailed view of employee, added styling
+
+[33mcommit a8ce3e69cccc9b0f9c391930b52e9dbc48f01262[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 14 14:02:47 2024 +0100
+
+    Added table displaying data, sass and styling
+
+[33mcommit 0035dfc34a4e71b8fa491b5b6187779d76429f22[m
+Author: Brzozowski-Piotr-EDU <piobrzedu@icloud.com>
+Date:   Sun Jan 14 11:57:26 2024 +0100
+
+    First Commit (Initial)

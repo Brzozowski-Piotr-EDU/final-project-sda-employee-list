@@ -1,5 +1,5 @@
 import React from "react";
-import { Employee, mockData } from "./App";
+import { Employee } from "./App";
 import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
 
@@ -18,6 +18,34 @@ export const Table = (props: { data: Employee[] }) => {
     event.preventDefault();
     //console.log({ state: item });
     navigate("/manage", { state: item });
+  };
+
+  const handleDeleteButtonClick = async (id) => {
+    const userConfirmed = window.confirm(
+      "This action will delete the employee. Are you sure?"
+    );
+
+    if (userConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:3000/employees/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          //if employee deleted website refresh and user get alert about it
+          alert("Deleted!");
+        } else {
+          //if json-server timeout user get alert about it
+          alert("Failed to delete employee!");
+        }
+      } catch (error) {
+        //if we got 4xx status code user get alert about it
+        alert("Error while deleting employee:", error);
+      }
+    }
   };
 
   return (
@@ -53,14 +81,23 @@ export const Table = (props: { data: Employee[] }) => {
                 <th>
                   <button
                     onClick={(event) => {
-                      event.stopPropagation(); // Zatrzymuje propagację zdarzenia
+                      event.stopPropagation(); // This allow button to work beacause with out that tr onClick overlaps
                       handleButtonClick(event, item);
                     }}
                   >
                     Edit
                   </button>
                 </th>
-                <th>Delete</th>
+                <th>
+                  <button
+                    onClick={(event) => {
+                      event.stopPropagation(); // This allow button to work beacause with out that tr onClick overlaps
+                      handleDeleteButtonClick(item.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </th>
               </tr>
             ))}
           </tbody>
