@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Table } from "./Table";
 import "./App.scss";
 import { Route, Routes } from "react-router";
@@ -23,7 +23,7 @@ export interface Employee {
   phonenumber: string;
 }
 
-export const mockData: Employee[] = [
+/*export const mockData: Employee[] = [
   {
     id: "1",
     firstname: "Jan",
@@ -72,14 +72,23 @@ export const mockData: Employee[] = [
     postalcode: "00-000",
     phonenumber: "+48 505 664 301",
   },
-];
+];*/
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/employees")
+      .then((response) => response.json())
+      .then((responseData) => {
+        setData(responseData);
+      });
+  }, []);
   return (
     <>
       <main className="main">
         <h1>List of Employees</h1>
-        <Table data={mockData} />
+        <Table data={data} />
       </main>
     </>
   );

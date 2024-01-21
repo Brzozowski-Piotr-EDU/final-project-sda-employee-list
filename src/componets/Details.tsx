@@ -5,7 +5,6 @@ import { RenderStatus } from "./RenderStatus";
 export function Details() {
   const location = useLocation();
   const data: Employee = location.state;
-  console.log(data);
 
   const navigate = useNavigate();
   const handleButtonClick = (): void => {
@@ -32,7 +31,7 @@ export function Details() {
           </thead>
           <tbody>
             <tr className="employee-detail">
-              <th>{data.birthdate.toLocaleDateString()}</th>
+              <th>{data.birthdate}</th>
               <th>{data.city}</th>
               <th>{data.address}</th>
               <th>{data.postalcode}</th>
