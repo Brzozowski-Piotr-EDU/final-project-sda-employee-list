@@ -1,16 +1,16 @@
 {
   "employees": [
     {
-      "id": "1",
       "firstname": "Jan",
       "lastname": "Kowalski",
-      "salary": 5000,
-      "status": "EMPLOYED",
       "birthdate": "1983-07-14",
       "address": "Warszawska 12",
       "city": "Warszawa",
       "postalcode": "00-000",
-      "phonenumber": "+48 777 666 555"
+      "phonenumber": "+48777666555",
+      "salary": "5000",
+      "status": "EMPLOYED",
+      "id": "1"
     },
     {
       "id": "2",
@@ -47,28 +47,5 @@
       "city": "Gdańsk",
       "postalcode": "00-000",
       "phonenumber": "+48 505 664 301"
-    },
-    {
-      "id": "df9c",
-      "firstName": "test",
-      "lastName": "test",
-      "birthDate": "2024-01-16",
-      "address": "test",
-      "city": "test",
-      "postalCode": "07-007",
-      "salary": "3000",
-      "status": "EMPLOYED"
-    },
-    {
-      "id": "f3bc",
-      "firstname": "test2",
-      "lastname": "test2",
-      "birthdate": "1989-08-12",
-      "address": "test2",
-      "city": "test2",
-      "postalcode": "22-222",
-      "salary": "5000",
-      "status": "FIRED"
     }
-  ]
 }
