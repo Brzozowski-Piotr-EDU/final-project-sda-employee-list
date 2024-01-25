@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Employee } from "./App";
 import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
 
 export const Table = (props: { data: Employee[] }) => {
   const navigate = useNavigate();
+
+  //useState used to store state of table sorted table
+  const [sortedColumn, setSortedColumn] = useState<string | null>(null);
+  //useState used to get track of type of sorting been used on table
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  // logic to handle click on header to sort the table
+  const handleSort = (columnName: string) => {
+    if (sortedColumn === columnName) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortedColumn(columnName);
+      setSortOrder("asc");
+    }
+  };
+
+  //storing table, used to render table later
+  const sortedData = [...props.data].sort((a, b) => {
+    if (sortedColumn) {
+      const aValue = a[sortedColumn];
+      const bValue = b[sortedColumn];
+
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortOrder === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      } else {
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+      }
+    }
+
+    return 0;
+  });
+
   const handleRowClick = (event: React.MouseEvent, item: Employee): void => {
     event.preventDefault();
     navigate("/details", { state: item });
@@ -36,6 +70,7 @@ export const Table = (props: { data: Employee[] }) => {
 
         if (response.ok) {
           //if employee deleted website refresh and user get alert about it
+          window.location.reload();
           alert("Deleted!");
         } else {
           //if json-server timeout user get alert about it
@@ -57,17 +92,17 @@ export const Table = (props: { data: Employee[] }) => {
         <table className="table-employee">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Salary</th>
-              <th>Status</th>
+              <th onClick={() => handleSort("id")}>ID</th>
+              <th onClick={() => handleSort("firstname")}>First Name</th>
+              <th onClick={() => handleSort("lastname")}>Last Name</th>
+              <th onClick={() => handleSort("salary")}>Salary</th>
+              <th onClick={() => handleSort("status")}>Status</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {props.data.map((item) => (
+            {sortedData.map((item) => (
               <tr
                 onClick={(event) => handleRowClick(event, item)}
                 className="employee"

@@ -143,7 +143,7 @@ export const Manage = () => {
           setAddress("");
           setCity("");
           setPostalCode("");
-          setPhoneNumber("");
+          setPhoneNumber("+48");
           setSalary("");
           setStatus("UNDEFINED");
           //navigate("/");
@@ -170,7 +170,13 @@ export const Manage = () => {
       return;
     }
 
+    //this if make it impossible to put to the input anything other than "-" or numbers
     if (name === "postalcode" && !/^\d*(-\d*)?$/.test(value)) {
+      return;
+    }
+
+    //this if make it impossible to put to the input anything other than "+" or numbers
+    if (name === "phonenumber" && !/^\+?[0-9]*$/.test(value)) {
       return;
     }
 
@@ -272,7 +278,7 @@ export const Manage = () => {
         />
         <label>Phone Number:</label>
         <input
-          type="tel"
+          type="string"
           className="input"
           value={phonenumber}
           onChange={handleInputChange}
