@@ -39,6 +39,30 @@ export const Table = (props: { data: Employee[] }) => {
     return 0;
   });
 
+  //useState for search by strings comming from input
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  //logic to handle searching by
+  const filteredData = sortedData.filter((item) => {
+    const searchableFields = [
+      "id",
+      "firstname",
+      "lastname",
+      "salary",
+      "status",
+    ];
+
+    for (const field of searchableFields) {
+      if (
+        String(item[field]).toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  });
+
   const handleRowClick = (event: React.MouseEvent, item: Employee): void => {
     event.preventDefault();
     navigate("/details", { state: item });
@@ -89,20 +113,37 @@ export const Table = (props: { data: Employee[] }) => {
         <button className="button-add" onClick={handleButtonClick}>
           Add new employee
         </button>
+        <input
+          type="text"
+          className="inputSearch"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <table className="table-employee">
           <thead>
             <tr>
-              <th onClick={() => handleSort("id")}>ID</th>
-              <th onClick={() => handleSort("firstname")}>First Name</th>
-              <th onClick={() => handleSort("lastname")}>Last Name</th>
-              <th onClick={() => handleSort("salary")}>Salary</th>
-              <th onClick={() => handleSort("status")}>Status</th>
+              <th className="thSortBy" onClick={() => handleSort("id")}>
+                ID
+              </th>
+              <th className="thSortBy" onClick={() => handleSort("firstname")}>
+                First Name
+              </th>
+              <th className="thSortBy" onClick={() => handleSort("lastname")}>
+                Last Name
+              </th>
+              <th className="thSortBy" onClick={() => handleSort("salary")}>
+                Salary
+              </th>
+              <th className="thSortBy" onClick={() => handleSort("status")}>
+                Status
+              </th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((item) => (
+            {filteredData.map((item) => (
               <tr
                 onClick={(event) => handleRowClick(event, item)}
                 className="employee"

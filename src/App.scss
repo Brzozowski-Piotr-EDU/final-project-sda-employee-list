@@ -21,11 +21,7 @@ main {
     margin-left: 10px;
   }
 
-  .input-first {
-    width: 46%;
-    margin-left: 10px;
-  }
-
+  .input-first,
   .input-second {
     width: 46%;
     margin-left: 10px;
@@ -63,6 +59,12 @@ main {
   }
 }
 
+input.inputSearch {
+  height: 30px;
+  width: 264px;
+  margin-left: 315px;
+}
+
 .table-employee {
   width: 1200px;
   border-collapse: collapse;
@@ -75,6 +77,11 @@ main {
     line-height: 2.2;
     tr {
       border-bottom: solid #4d4b4b;
+    }
+
+    th.thSortBy:hover {
+      cursor: pointer;
+      background-color: #757272;
     }
   }
 
@@ -114,3 +121,32 @@ main {
   width: 150px;
   top: 30px;
 }
+
+// idk what i'am doing i hate repsonsive design
+/*@media only screen and (max-width: 600px) {
+  .table-employee {
+    width: 550px;
+  }
+
+  thead {
+    height: 80px;
+  }
+
+  tr {
+    height: 80px;
+  }
+
+  .button-add {
+    position: relative;
+    height: 45px;
+    width: 264px;
+    margin-left: 140px;
+    margin-bottom: 20px;
+  }
+
+  input.inputSearch {
+    display: flex;
+    height: 40px;
+    margin-left: 138px;
+  }
+}*/
