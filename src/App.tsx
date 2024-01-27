@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { Table } from "./Table";
 import "./App.scss";
-import { Route, Routes } from "react-router";
-import { Details } from "./componets/Details";
-import { I18nextProvider, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export type EmployeeStatus =
   | "SICK_LEAVE"
@@ -22,6 +20,7 @@ export interface Employee {
   city: string;
   postalcode: string;
   phonenumber: string;
+  [key: string]: any;
 }
 
 function App() {

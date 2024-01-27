@@ -27,8 +27,8 @@ export const Table = (props: { data: Employee[] }) => {
   //storing table, used to render table later
   const sortedData = [...props.data].sort((a, b) => {
     if (sortedColumn) {
-      const aValue = a[sortedColumn];
-      const bValue = b[sortedColumn];
+      const aValue = a[sortedColumn as keyof Employee];
+      const bValue = b[sortedColumn as keyof Employee];
 
       if (typeof aValue === "string" && typeof bValue === "string") {
         return sortOrder === "asc"
@@ -57,7 +57,9 @@ export const Table = (props: { data: Employee[] }) => {
 
     for (const field of searchableFields) {
       if (
-        String(item[field]).toLowerCase().includes(searchTerm.toLowerCase())
+        String(item[field as keyof Employee])
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
       ) {
         return true;
       }
@@ -81,7 +83,7 @@ export const Table = (props: { data: Employee[] }) => {
     navigate("/manage", { state: item });
   };
 
-  const handleDeleteButtonClick = async (id) => {
+  const handleDeleteButtonClick = async (id: string) => {
     const userConfirmed = window.confirm(t("question_deleting_user"));
 
     if (userConfirmed) {
@@ -103,7 +105,7 @@ export const Table = (props: { data: Employee[] }) => {
         }
       } catch (error) {
         //if we got 4xx status code user get alert about it
-        alert(t("fetch_timeout_error_delete"), error);
+        alert(`${t("fetch_timeout_error_delete")} ${error}`);
       }
     }
   };
@@ -111,7 +113,10 @@ export const Table = (props: { data: Employee[] }) => {
   return (
     <>
       <div>
-        <button className="button-add" onClick={handleButtonClick}>
+        <button
+          className="button-add"
+          onClick={(event) => handleButtonClick(event, item)}
+        >
           {t("button_add_new")}
         </button>
 
