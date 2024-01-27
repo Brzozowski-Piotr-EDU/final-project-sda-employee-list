@@ -119,10 +119,15 @@ const resources = {
   },
 };
 
-i18n.use(LanguageDetector).use(initReactI18next).init({
-  resources,
-  lng: "en",
-  fallbackLNG: "en",
-});
+i18n
+  .use(LanguageDetector) // Dodaj ten fragment
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: "en", // Popraw typo w "fallbackLng"
+    detection: {
+      order: ["localStorage", "navigator"],
+    },
+  });
 
 export default i18n;

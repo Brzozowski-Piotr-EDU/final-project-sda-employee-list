@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import i18n from "i18next";
-import { I18nextProvider, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export const LangSelector = () => {
   const { t } = useTranslation();
@@ -18,25 +18,12 @@ export const LangSelector = () => {
     const value = e.target.value;
     console.log("Selected Language Code:", value);
 
-    // Implement logic to change the language
+    // Zaktualizuj wybrany język w stanie
+    setSelectedLanguage(value);
+
+    // Zmień język w i18n
     i18n.changeLanguage(value);
   };
-
-  useEffect(() => {
-    // Autodetect language from the browser settings
-    const browserLanguage = navigator.language.split("-")[0]; // Get the language code without the region code
-    const defaultLanguage = langs.some((lang) => lang.code === browserLanguage)
-      ? browserLanguage
-      : "en";
-
-    // Update the language state in LangSelector
-    setSelectedLanguage(defaultLanguage);
-
-    // Change the language in i18n if it differs from the current language
-    if (defaultLanguage !== i18n.language) {
-      i18n.changeLanguage(defaultLanguage);
-    }
-  }, []); // Empty dependency array ensures that this effect runs only once on component mount
 
   return (
     <div className="langSelector">
