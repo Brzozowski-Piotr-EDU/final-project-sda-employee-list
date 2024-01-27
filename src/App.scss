@@ -1,3 +1,7 @@
+$margin-left: 10px;
+$button-width: 150px;
+$input-width: 95.5%;
+
 main {
   display: flex;
   flex-direction: column;
@@ -7,43 +11,40 @@ main {
   label {
     display: block;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: $margin-left;
   }
 
   input {
     height: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 0;
   }
 
   .input {
-    width: 95.5%;
-    margin-left: 10px;
+    width: $input-width;
+    margin-left: $margin-left;
   }
 
   .input-first,
   .input-second {
     width: 46%;
-    margin-left: 10px;
+    margin-left: $margin-left;
   }
 
   .input-inrow {
-    margin-left: 10px;
+    margin-left: $margin-left;
   }
 
   .input-submit {
     position: relative;
     height: 35px;
-    width: 150px;
+    width: $button-width;
     top: 30px;
     margin-right: 25px;
   }
 
   select {
     margin-top: 15px;
-    justify-content: center;
-    align-items: center;
-    margin-left: 8px;
+    margin-left: $margin-left;
     width: 97.5%;
   }
 
@@ -52,6 +53,7 @@ main {
     width: 570px;
     height: 580px;
   }
+
   section.section-bottom {
     display: flex;
     justify-content: center;
@@ -68,13 +70,17 @@ input.inputSearch {
 .table-employee {
   width: 1200px;
   border-collapse: collapse;
-  background-color: #1c1c1e th, td {
-    //border: solid 1px #777;
+  background-color: #1c1c1e;
+
+  th,
+  td {
     padding: 5px;
   }
+
   thead {
     background-color: #37373b;
     line-height: 2.2;
+
     tr {
       border-bottom: solid #4d4b4b;
     }
@@ -95,6 +101,7 @@ input.inputSearch {
       line-height: 3;
     }
   }
+
   tr.employee:nth-child(even) {
     background-color: #37373b;
   }
@@ -103,6 +110,7 @@ input.inputSearch {
     background-color: #757272;
     cursor: pointer;
   }
+
   tr.employee-detail {
     background-color: #757272;
   }
@@ -111,14 +119,14 @@ input.inputSearch {
 .button-add {
   position: relative;
   height: 35px;
-  width: 150px;
+  width: $button-width;
   margin-bottom: 20px;
 }
 
 .button-back {
   position: relative;
   height: 35px;
-  width: 150px;
+  width: $button-width;
   top: 30px;
 }
 
@@ -126,46 +134,60 @@ div.langSelector {
   display: flex;
   position: absolute;
   width: 300px;
-  align-items: center; /* Wyśrodkuj elementy w pionie */
+  align-items: center;
   margin-top: -45px;
-  margin-left: 920px; /* Dostosuj marginesy według potrzeb */
+  margin-left: 920px;
 
   label {
-    margin-right: 10px; /* Dodaj odstęp między etykietą a rozwijaną listą */
+    margin-right: 10px;
   }
 
   select {
     margin-top: -1px;
     height: 25px;
-    width: 120px; /* Dostosuj szerokość rozwijanej listy według potrzeb */
+    width: 120px;
   }
 }
 
-// idk what i'am doing i hate repsonsive design
-/*@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
+  h1 {
+    margin-left: 25px;
+  }
+
+  main {
+    font-size: 10px;
+  }
+
+  .inputSearch,
+  .langSelector {
+    margin-top: 0;
+  }
+
   .table-employee {
-    width: 550px;
+    width: 100%;
   }
 
-  thead {
-    height: 80px;
-  }
-
-  tr {
-    height: 80px;
+  .inputSearch {
+    justify-content: center;
+    display: block;
+    width: 144px !important;
+    height: 40px !important;
+    margin-left: 120px !important;
   }
 
   .button-add {
-    position: relative;
-    height: 45px;
-    width: 264px;
-    margin-left: 140px;
-    margin-bottom: 20px;
+    height: 50px !important;
+    margin-left: 120px !important;
   }
-
-  input.inputSearch {
-    display: flex;
-    height: 40px;
-    margin-left: 138px;
+  div.langSelector {
+    position: static;
+    width: 160px;
+    align-items: center;
+    margin-top: 0px;
+    margin-left: 112px;
+    margin-bottom: 20px !important;
   }
-}*/
+  .main-manage {
+    background-color: red;
+  }
+}

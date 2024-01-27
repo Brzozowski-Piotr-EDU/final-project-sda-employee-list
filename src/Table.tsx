@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Employee } from "./App";
 import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
-import { I18nextProvider, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { LangSelector } from "./componets/LangSelector";
 export const Table = (props: { data: Employee[] }) => {
   const navigate = useNavigate();
