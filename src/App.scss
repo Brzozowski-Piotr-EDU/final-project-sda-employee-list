@@ -122,6 +122,25 @@ input.inputSearch {
   top: 30px;
 }
 
+div.langSelector {
+  display: flex;
+  position: absolute;
+  width: 300px;
+  align-items: center; /* Wyśrodkuj elementy w pionie */
+  margin-top: -45px;
+  margin-left: 920px; /* Dostosuj marginesy według potrzeb */
+
+  label {
+    margin-right: 10px; /* Dodaj odstęp między etykietą a rozwijaną listą */
+  }
+
+  select {
+    margin-top: -1px;
+    height: 25px;
+    width: 120px; /* Dostosuj szerokość rozwijanej listy według potrzeb */
+  }
+}
+
 // idk what i'am doing i hate repsonsive design
 /*@media only screen and (max-width: 600px) {
   .table-employee {

@@ -5,6 +5,7 @@ import "./index.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Details } from "./componets/Details.tsx";
 import { Manage } from "./componets/Manage.tsx";
+import "./i18n.js";
 
 const router = createBrowserRouter([
   {

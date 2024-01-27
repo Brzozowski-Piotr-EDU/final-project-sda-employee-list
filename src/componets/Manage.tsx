@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Employee } from "../App";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { I18nextProvider, useTranslation } from "react-i18next"; // Import from react-i18next
 export const Manage = () => {
+  //support for i18n
+  const { t } = useTranslation();
+
   //Needed to move beetween components
   const location = useLocation();
   //Needed to get data from App.tsx
@@ -24,7 +27,7 @@ export const Manage = () => {
   useEffect(() => {
     // updating state of employeeValues when user choose to edit data for existing user
     if (data) {
-      setHeaderText("Edit Existing Employee");
+      setHeaderText(t("editing_page_title"));
       setFirstName(data.firstname);
       setLastName(data.lastname);
       setBirthDate(new Date(data.birthdate).toISOString().split("T")[0]);
@@ -35,7 +38,7 @@ export const Manage = () => {
       setSalary(data.salary);
       setStatus(data.status);
     } else {
-      setHeaderText("Add New Employee");
+      setHeaderText(t("adding_page_title"));
     }
   }, [data]);
 
@@ -74,10 +77,10 @@ export const Manage = () => {
     //Checking if all inputs and sections is not empty
     //The ! means that the variable is empty
     if (
-      !validateField(employeeData.firstname, 2, "First name is too short") ||
-      !validateField(employeeData.lastname, 2, "Last name is too short") ||
-      !validateField(employeeData.address, 1, "Address is too short") ||
-      !validateField(employeeData.city, 2, "City name is too short") ||
+      !validateField(employeeData.firstname, 2, t("alert_first_name_short")) ||
+      !validateField(employeeData.lastname, 2, t("alert_last_name_short")) ||
+      !validateField(employeeData.address, 1, t("alert_address_short")) ||
+      !validateField(employeeData.city, 2, t("alert_city_short")) ||
       !employeeData.postalcode.includes("-") ||
       !isValidPostalCode(employeeData.postalcode) ||
       !employeeData.phonenumber.includes("+48") ||
@@ -113,11 +116,11 @@ export const Manage = () => {
           navigate("/");
         } else {
           // if we got timeout from json-server user get alert about it
-          alert("Failed to update employee data");
+          alert(t("fetch_timeout_error_manage"));
         }
       } catch (error) {
         // if we got 4xx code from json-server then user get alert about it
-        alert("Error while updating employee data:", error);
+        alert(t("fetch_4xx_error_manage"), error);
       }
     } else {
       // if we do not have employee ID that means we adding new employee.
@@ -136,7 +139,7 @@ export const Manage = () => {
 
         if (response.ok) {
           // if we got 2xx code response from json-server then user get alert about it and inputs get cleaned
-          alert("Added new employee successfully!");
+          alert(t("fetch_repsonse_ok_manage"));
           setFirstName("");
           setLastName("");
           setBirthDate("");
@@ -149,11 +152,11 @@ export const Manage = () => {
           //navigate("/");
         } else {
           // if we got timeout from json-server user get alert about it
-          alert("Failed to add new employee");
+          alert(t("fetch_timeout_error_add"));
         }
       } catch (error) {
         // if we got 4xx code from json-server then user get alert about it
-        alert("Error while adding new employee:", error);
+        alert(t("fetch_4xx_error_add"), error);
       }
     }
   };
@@ -215,7 +218,7 @@ export const Manage = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    // Jeśli nazwa pola to "salary" i użytkownik próbuje wprowadzić "-", zablokuj zdarzenie
+    // if name of field is "salary" and user try to type "-" block this event
     if (event.currentTarget.name === "salary" && event.key === "-") {
       event.preventDefault();
     }
@@ -225,11 +228,11 @@ export const Manage = () => {
     <main className="main-manage">
       <h1>{headerText}</h1>
       <form onSubmit={handleSubmit}>
-        <label>Employee Name:</label>
+        <label>{t("label_employee_name")}</label>
         <input
           type="text"
           className="input-first"
-          placeholder="First Name"
+          placeholder={t("input_first_name_placeholder")}
           onChange={handleInputChange}
           value={firstname}
           name="firstname"
@@ -237,25 +240,25 @@ export const Manage = () => {
         <input
           type="text"
           className="input-second"
-          placeholder="Last Name"
+          placeholder={t("input_last_name_placeholder")}
           onChange={handleInputChange}
           value={lastname}
           name="lastname"
         />
-        <label>Date of Birth:</label>
+        <label>{t("label_date_of_birth")}</label>
         <input
           type="date"
           className="input"
-          placeholder="YYYY-MM-DD"
+          placeholder={t("input_date_of_birth_placeholder")}
           onChange={handleInputChange}
           value={birthdate}
           name="birthdate"
         />
-        <label>Employee Adress:</label>
+        <label>{t("label_employee_address")}</label>
         <input
           type="text"
           className="input-inrow"
-          placeholder="Address"
+          placeholder={t("input_address_placeholder")}
           onChange={handleInputChange}
           value={address}
           name="address"
@@ -263,7 +266,7 @@ export const Manage = () => {
         <input
           type="text"
           className="input-inrow"
-          placeholder="City"
+          placeholder={t("input_city_placeholder")}
           onChange={handleInputChange}
           value={city}
           name="city"
@@ -271,12 +274,12 @@ export const Manage = () => {
         <input
           type="text"
           className="input-inrow"
-          placeholder="Postal Code"
+          placeholder={t("input_postal_code_placeholder")}
           onChange={handleInputChange}
           value={postalcode}
           name="postalcode"
         />
-        <label>Phone Number:</label>
+        <label>{t("label_phone_number")}</label>
         <input
           type="string"
           className="input"
@@ -284,7 +287,7 @@ export const Manage = () => {
           onChange={handleInputChange}
           name="phonenumber"
         />
-        <label>Salary:</label>
+        <label>{t("label_salary")}</label>
 
         <input
           type="number"
@@ -295,22 +298,29 @@ export const Manage = () => {
           onKeyDown={handleKeyDown}
           name="salary"
         />
-        {/* Zablokować ujemną wypłatę*/}
         <section className="selection-status">
-          <label>Status:</label>
+          <label>{t("label_status")}</label>
           <select value={status} onChange={handleInputChange} name="status">
             <option value="UNDEFINED" hidden>
-              Choose status of employee
+              {t("status_section_option_undefined")}
             </option>
-            <option value="EMPLOYED">Employed</option>
-            <option value="FIRED">Fired</option>
-            <option value="ON_HOLIDAY">On holiday</option>
+            <option value="EMPLOYED">
+              {t("status_section_option_employed")}
+            </option>
+            <option value="FIRED">{t("status_section_option_fired")}</option>
+            <option value="ON_HOLIDAY">
+              {t("status_section_option_on_holiday")}
+            </option>
           </select>
         </section>
         <section className="section-bottom">
-          <input className="input-submit" type="submit" value="Submit" />
+          <input
+            className="input-submit"
+            type="submit"
+            value={t("button_submit")}
+          />
           <button className="button-back" onClick={handleButtonClick}>
-            Back
+            {t("button_back")}
           </button>
         </section>
       </form>

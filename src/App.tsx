@@ -3,6 +3,7 @@ import { Table } from "./Table";
 import "./App.scss";
 import { Route, Routes } from "react-router";
 import { Details } from "./componets/Details";
+import { I18nextProvider, useTranslation } from "react-i18next";
 
 export type EmployeeStatus =
   | "SICK_LEAVE"
@@ -25,6 +26,7 @@ export interface Employee {
 
 function App() {
   const [data, setData] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch("http://localhost:3000/employees")
@@ -36,7 +38,7 @@ function App() {
   return (
     <>
       <main className="main">
-        <h1>List of Employees</h1>
+        <h1>{t("main_page_title")}</h1>
         <Table data={data} />
       </main>
     </>

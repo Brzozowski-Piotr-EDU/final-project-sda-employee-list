@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Employee } from "./App";
 import { useNavigate } from "react-router-dom";
 import { RenderStatus } from "./componets/RenderStatus";
-
+import { I18nextProvider, useTranslation } from "react-i18next";
+import { LangSelector } from "./componets/LangSelector";
 export const Table = (props: { data: Employee[] }) => {
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   //useState used to store state of table sorted table
   const [sortedColumn, setSortedColumn] = useState<string | null>(null);
@@ -79,9 +82,7 @@ export const Table = (props: { data: Employee[] }) => {
   };
 
   const handleDeleteButtonClick = async (id) => {
-    const userConfirmed = window.confirm(
-      "This action will delete the employee. Are you sure?"
-    );
+    const userConfirmed = window.confirm(t("question_deleting_user"));
 
     if (userConfirmed) {
       try {
@@ -95,14 +96,14 @@ export const Table = (props: { data: Employee[] }) => {
         if (response.ok) {
           //if employee deleted website refresh and user get alert about it
           window.location.reload();
-          alert("Deleted!");
+          alert(t("fetch_repsonse_ok_delete"));
         } else {
           //if json-server timeout user get alert about it
-          alert("Failed to delete employee!");
+          alert(t("fetch_timeout_error_delete"));
         }
       } catch (error) {
         //if we got 4xx status code user get alert about it
-        alert("Error while deleting employee:", error);
+        alert(t("fetch_timeout_error_delete"), error);
       }
     }
   };
@@ -111,32 +112,34 @@ export const Table = (props: { data: Employee[] }) => {
     <>
       <div>
         <button className="button-add" onClick={handleButtonClick}>
-          Add new employee
+          {t("button_add_new")}
         </button>
+
         <input
           type="text"
           className="inputSearch"
-          placeholder="Search..."
+          placeholder={t("input_search_placeholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <LangSelector />
         <table className="table-employee">
           <thead>
             <tr>
               <th className="thSortBy" onClick={() => handleSort("id")}>
-                ID
+                {t("id")}
               </th>
               <th className="thSortBy" onClick={() => handleSort("firstname")}>
-                First Name
+                {t("first_name_table_header")}
               </th>
               <th className="thSortBy" onClick={() => handleSort("lastname")}>
-                Last Name
+                {t("last_name_table_header")}
               </th>
               <th className="thSortBy" onClick={() => handleSort("salary")}>
-                Salary
+                {t("salary_table_header")}
               </th>
               <th className="thSortBy" onClick={() => handleSort("status")}>
-                Status
+                {t("status_table_header")}
               </th>
               <th></th>
               <th></th>
@@ -161,7 +164,7 @@ export const Table = (props: { data: Employee[] }) => {
                       handleButtonClick(event, item);
                     }}
                   >
-                    Edit
+                    {t("button_edit_existing")}
                   </button>
                 </th>
                 <th>
@@ -171,13 +174,17 @@ export const Table = (props: { data: Employee[] }) => {
                       handleDeleteButtonClick(item.id);
                     }}
                   >
-                    Delete
+                    {t("button_delete_existing")}
                   </button>
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
+        <h4>
+          {t("number_of_results")}
+          {filteredData.length}
+        </h4>
       </div>
     </>
   );
