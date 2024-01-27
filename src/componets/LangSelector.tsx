@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 
@@ -18,10 +18,10 @@ export const LangSelector = () => {
     const value = e.target.value;
     console.log("Selected Language Code:", value);
 
-    // Zaktualizuj wybrany język w stanie
+    // Update selected lnag
     setSelectedLanguage(value);
 
-    // Zmień język w i18n
+    // Change lang using i18n
     i18n.changeLanguage(value);
   };
 

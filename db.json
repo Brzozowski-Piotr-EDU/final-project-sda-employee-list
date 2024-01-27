@@ -47,6 +47,18 @@
       "phonenumber": "+48687602888",
       "salary": "5000",
       "status": "ON_HOLIDAY"
+    },
+    {
+      "id": "aa97",
+      "firstname": "test",
+      "lastname": "test",
+      "birthdate": "1999-12-12",
+      "address": "testowa",
+      "city": "12",
+      "postalcode": "07-444",
+      "phonenumber": "+48600500900",
+      "salary": 10000,
+      "status": "EMPLOYED"
     }
   ]
 }

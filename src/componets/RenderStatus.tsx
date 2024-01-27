@@ -1,4 +1,3 @@
-import React from "react";
 import { EmployeeStatus } from "../App";
 
 export const RenderStatus = (status: EmployeeStatus): string => {

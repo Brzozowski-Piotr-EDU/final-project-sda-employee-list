@@ -73,13 +73,11 @@ export const Table = (props: { data: Employee[] }) => {
     navigate("/details", { state: item });
   };
 
-  /*const handleButtonClick = (props: {data: Employee[]}): void => {
-    navigate("/manage");
-  };*/
-
-  const handleButtonClick = (event: React.MouseEvent, item: Employee): void => {
+  const handleButtonClick = (
+    event: React.MouseEvent,
+    item: Employee | undefined
+  ): void => {
     event.preventDefault();
-    //console.log({ state: item });
     navigate("/manage", { state: item });
   };
 
@@ -96,7 +94,7 @@ export const Table = (props: { data: Employee[] }) => {
         });
 
         if (response.ok) {
-          //if employee deleted website refresh and user get alert about it
+          //if employee deleted, website refresh and user get alert about succesfull delete.
           window.location.reload();
           alert(t("fetch_repsonse_ok_delete"));
         } else {
@@ -115,7 +113,7 @@ export const Table = (props: { data: Employee[] }) => {
       <div>
         <button
           className="button-add"
-          onClick={(event) => handleButtonClick(event, item)}
+          onClick={(event) => handleButtonClick(event, undefined)}
         >
           {t("button_add_new")}
         </button>
