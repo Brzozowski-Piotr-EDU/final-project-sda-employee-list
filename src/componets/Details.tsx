@@ -4,7 +4,9 @@ import { RenderStatus } from "./RenderStatus";
 import { useTranslation } from "react-i18next";
 
 export function Details() {
+  //Support for i18n
   const location = useLocation();
+  //import of i18n
   const { t } = useTranslation();
   const data: Employee = location.state;
 

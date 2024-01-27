@@ -45,7 +45,7 @@ export const Table = (props: { data: Employee[] }) => {
   //useState for search by strings comming from input
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  //logic to handle searching by
+  //logic to handle searching
   const filteredData = sortedData.filter((item) => {
     const searchableFields = [
       "id",

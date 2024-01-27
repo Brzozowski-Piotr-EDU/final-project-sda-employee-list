@@ -4,12 +4,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export const Manage = () => {
+  //Support for i18n
   const { t } = useTranslation();
+  //Needed to move data between componets
   const location = useLocation();
+  //Needed to get data from App.tsx
   const data: Employee = location.state;
 
   const navigate = useNavigate();
 
+  //I use the blank unicode beacause react is not fast enough to change from empty headerText to for ex. "Add New Employee" and for nanosecond we don't have h1 and then he appears and that makes form bumps down to make a space for h1. Thats looks bad and not fluent
   const [headerText, setHeaderText] = useState("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -22,6 +26,7 @@ export const Manage = () => {
   const [status, setStatus] = useState("");
 
   useEffect(() => {
+    // updating state of employeeValues when user choose to edit data for existing user
     if (data) {
       setHeaderText(t("editing_page_title"));
       setFirstName(data.firstname);
@@ -38,6 +43,7 @@ export const Manage = () => {
     }
   }, [data]);
 
+  // Needed for validation test on fields before sending, that block sending to json-server a dump data
   const validateField = (
     value: string,
     minLength: number,
@@ -56,6 +62,7 @@ export const Manage = () => {
   const isValidPhoneNumber = (number: string): boolean =>
     /^\+48[0-9]+$/.test(number) && number.length >= 12;
 
+  //logic to send data via fetch to json-server
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -70,7 +77,8 @@ export const Manage = () => {
       salary: parseFloat(salary),
       status,
     };
-
+    //Checking if all inputs and sections is not empty or too short (min 1 or 2 length)
+    //The ! means that the variable is empty
     if (
       !validateField(employeeData.firstname, 2, t("alert_first_name_short")) ||
       !validateField(employeeData.lastname, 2, t("alert_last_name_short")) ||
